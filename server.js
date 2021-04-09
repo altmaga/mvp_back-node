@@ -1,5 +1,5 @@
-  
-/* 
+
+/*
 Imports
 */
     // NPM modules
@@ -74,9 +74,9 @@ class ServerClass{
         this.server.use('/api', apiRouter.init());
 
         // Set backend router
-        const BackendRouterClass = require('./routers/backend.router')
-        const backendRouter = new BackendRouterClass( { passport } );
-        this.server.use('/', backendRouter.init());
+        // const BackendRouterClass = require('./routers/backend.router')
+        // const backendRouter = new BackendRouterClass( { passport } );
+        // this.server.use('/', backendRouter.init());
 
         // Launch server
         this.launch();
@@ -99,7 +99,7 @@ class ServerClass{
 }
 //
 
-/* 
+/*
 Start server
 */
     const NodeApp = new ServerClass();

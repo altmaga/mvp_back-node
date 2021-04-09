@@ -2,9 +2,9 @@
 Definition
 */
     const Models = {
-        post: require('./post.model'),
         user: require('./user.model'),
         organization: require('./organization.model'),
+        product: require('./product.model'),
     }
 //
 

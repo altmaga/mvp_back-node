@@ -11,21 +11,21 @@ Definition
     const MySchema = new Schema({
         // Schema.org
         '@context': { type: String, default: 'http://schema.org' },
-        '@type': { type: String, default: 'Article' },
+        '@type': { type: String, default: 'Product' },
 
-        headline: String,
-        body: String,
+        name: String,
+        desc: String,
 
         // Associer le profil utilisateur
         author: {
             type: Schema.Types.ObjectId,
-            ref: 'user'  
+            ref: 'user'
         },
 
-        comments: [{
+        organization: {
             type: Schema.Types.ObjectId,
-            ref: 'comment'  
-        }],
+            ref: 'organization'
+        },
 
         // Définir une valeur par défaut
         creationDate: { type: Date, default: new Date() },
@@ -34,8 +34,8 @@ Definition
     })
 //
 
-/* 
+/*
 Export
 */
-    module.exports = mongoose.model('post', MySchema)
+    module.exports = mongoose.model('product', MySchema)
 //

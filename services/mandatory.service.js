@@ -2,10 +2,10 @@
 Definition
 */
     const Mandatory = {
-        register: [ 'givenName', 'familyName', 'password', 'email', 'isOrganization' ],
+        register: [ 'givenName', 'familyName', 'password', 'email', 'isOrganization', 'organizations' ],
         login: [ 'password', 'email' ],
         organization: [ 'legalName' ],
-        post: [ 'headline', 'body' ]
+        product: [ 'name', 'desc', 'organization']
     }
 //
 

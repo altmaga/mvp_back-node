@@ -21,6 +21,11 @@ const MySchema = new Schema({
         ref: 'user'
     },
 
+    products: {
+        type: Schema.Types.ObjectId,
+        ref: 'product'
+    },
+
     // Définir une valeur par défaut
     creationDate: { type: Date, default: new Date() },
     dateModified: { type: Date, default: new Date() },

@@ -55,11 +55,18 @@ Controller methods
         })
     }
 
-    // const me = (req, res) => {
-    //     return new Promise((resolve, reject) => {
-
-    //     })
-    // }
+    const me = (req, res) => {
+        return new Promise( (resolve, reject) => {
+            console.log(req, res);
+            // Mongoose population to get associated data
+            Models.user.find()
+            .populate('organizations')
+            .exec( (err, data) => {
+                if( err ){ return reject(err) }
+                else{ return resolve(data) }
+            })
+        })
+    }
 //
 
 /*
@@ -68,6 +75,7 @@ Export controller methods
     module.exports = {
         register,
         login,
-        logout
+        logout,
+        me
     }
 //

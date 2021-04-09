@@ -11,21 +11,21 @@ Imports
     const { sendApiSuccessResponse,sendApiErrorResponse } = require('../services/response.service');
 //
 
-/*  
+/*
 Routes definition
 */
     class RouterClass {
         // Include Passport authentication service from server file in the RouterClass
         constructor( { passport } ){
             this.passport = passport
-            this.router = express.Router(); 
+            this.router = express.Router();
         }
 
         routes(){
             // [AUTH] get data from client to register new user
             this.router.post('/register', async (req, res) => {
                 // Check body data
-                if( typeof req.body === 'undefined' || req.body === null || Object.keys(req.body).length === 0 ){ 
+                if( typeof req.body === 'undefined' || req.body === null || Object.keys(req.body).length === 0 ){
                     return sendApiErrorResponse(req, res, null, 'No data provided in the reqest body')
                 }
                 else{
@@ -45,7 +45,7 @@ Routes definition
             // [AUTH] get data from client to log user
             this.router.post('/login', (req, res) => {
                 // Check body data
-                if( typeof req.body === 'undefined' || req.body === null || Object.keys(req.body).length === 0 ){ 
+                if( typeof req.body === 'undefined' || req.body === null || Object.keys(req.body).length === 0 ){
                     return sendApiErrorResponse(req, res, null, 'No data provided in the reqest body')
                 }
                 else{
@@ -71,7 +71,9 @@ Routes definition
 
             // [AUTH] get data from client cookie
             this.router.get('/me', this.passport.authenticate('jwt', { session: false }), (req, res) => {
-                sendApiSuccessResponse(req, res, req.user, 'User cookie extracted')
+                Controllers.auth.me(req, res)
+                .then( apiResponse => sendApiSuccessResponse(req, res, req.user, 'User cookie extracted') )
+                .catch( apiError => sendApiErrorResponse(res, res, apiError, 'Request failed') );
             })
         }
 

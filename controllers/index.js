@@ -3,7 +3,7 @@ Definition
 */
     const Controllers = {
         auth: require('./auth.controller'),
-        post: require('./post.controller'),
+        product: require('./product.controller'),
         organization: require('./organization.controller'),
     }
 //
