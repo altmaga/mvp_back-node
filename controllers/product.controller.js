@@ -13,15 +13,15 @@ const createOne = req => {
         Models.product.create(req.body)
             .then(data => {
                 resolve(data)
-                // console.log(data, data.organization);
                 Models.organization.findById(data.organization)
                 .then(organization => {
-                    console.log('organization', organization);
-                    // organization.products.push(data);
+                    console.log(organization);
+                    console.log(data)
+                    organization.products.push(data);
 
-                    // organization.save()
-                    // .then( updatedorganization => resolve(updatedorganization) )
-                    // .catch( updateError => reject(updateError) )
+                    organization.save()
+                    .then( updatedorganization => resolve(updatedorganization) )
+                    .catch( updateError => reject(updateError) )
                 })
             })
             .catch(err => reject(err))
@@ -33,6 +33,7 @@ const readAll = () => {
         // Mongoose population to get associated data
         Models.product.find()
             .populate('author', ['-password'])
+            .populate('organization')
             .exec((err, data) => {
                 if (err) { return reject(err) }
                 else { return resolve(data) }
@@ -45,6 +46,7 @@ const readOne = id => {
         // Mongoose population to get associated data
         Models.product.findById(id)
             .populate('author', ['-password'])
+            .populate('organization')
             .exec((err, data) => {
                 if (err) { return reject(err) }
                 else { return resolve(data) }

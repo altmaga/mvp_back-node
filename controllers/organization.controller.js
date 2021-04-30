@@ -20,7 +20,7 @@ CRUD methods
             // Mongoose population to get associated data
             Models.organization.find()
             .populate('author', [ '-password' ])
-            .populate('products')
+            .populate("products", ["-organization"])
             .exec( (err, data) => {
                 if( err ){ return reject(err) }
                 else{ return resolve(data) }
@@ -33,7 +33,7 @@ CRUD methods
             // Mongoose population to get associated data
             Models.organization.findById( id )
             .populate('author', [ '-password' ])
-            .populate('products')
+            .populate("products", ["-organization"])
             .exec( (err, data) => {
                 if( err ){ return reject(err) }
                 else{ return resolve(data) }
@@ -49,6 +49,7 @@ CRUD methods
             .then( organization => {
                 // Update object
                 organization.legalName = req.body.legalName;
+                organization.category = req.body.category;
                 organization.dateModified = new Date();
 
                 // TODO: Check author

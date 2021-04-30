@@ -14,6 +14,7 @@ const MySchema = new Schema({
     '@type': { type: String, default: 'Organization' },
 
     legalName: String,
+    category: String,
 
     // Associer le profil utilisateur
     author: {
@@ -21,10 +22,11 @@ const MySchema = new Schema({
         ref: 'user'
     },
 
-    products: {
+    // Associer les produits
+    products: [{
         type: Schema.Types.ObjectId,
         ref: 'product'
-    },
+    }],
 
     // Définir une valeur par défaut
     creationDate: { type: Date, default: new Date() },

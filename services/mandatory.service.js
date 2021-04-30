@@ -2,9 +2,9 @@
 Definition
 */
     const Mandatory = {
-        register: [ 'givenName', 'familyName', 'password', 'email', 'isOrganization', 'organizations' ],
+        register: [ 'givenName', 'familyName', 'password', 'email', 'isOrganization' ],
         login: [ 'password', 'email' ],
-        organization: [ 'legalName' ],
+        organization: [ 'legalName', 'category' ],
         product: [ 'name', 'desc', 'organization']
     }
 //

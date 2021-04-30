@@ -22,6 +22,7 @@ Definition
             ref: 'user'
         },
 
+        // Associer l'organisation
         organization: {
             type: Schema.Types.ObjectId,
             ref: 'organization'

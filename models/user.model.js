@@ -26,11 +26,6 @@ Definition
             { type: Boolean, default: false },
         ],
 
-        organizations: [{
-            type: Schema.Types.ObjectId,
-            ref: 'organization'
-        }],
-
         // Définir une valeur par défaut
         creationDate: { type: Date, default: new Date() },
         banished: { type: Boolean, default: false }
