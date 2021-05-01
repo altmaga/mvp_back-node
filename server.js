@@ -26,12 +26,13 @@ class ServerClass{
     init(){
         // Set CORS
         this.server.use( (req, res, next) => {
-            // Define allowed origins
-            const allowedOrigins = process.env.ALLOWED_ORIGINS.split(', ');
-            const origin = req.headers.origin;
+            // // Define allowed origins
+            // const allowedOrigins = process.env.ALLOWED_ORIGINS.split(', ');
+            // const origin = req.headers.origin;
 
-            // Setup CORS
-            if(allowedOrigins.indexOf(origin) > -1){ res.setHeader('Access-Control-Allow-Origin', origin)}
+            // // Setup CORS
+            // if(allowedOrigins.indexOf(origin) > -1){ res.setHeader('Access-Control-Allow-Origin', origin)}
+            res.header('Access-Control-Allow-Origin', ['http://localhost:8080']);
             res.header('Access-Control-Allow-Credentials', true);
             res.header('Access-Control-Allow-Methods', ['GET', 'PUT', 'POST', 'DELETE', 'POST']);
             res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');

@@ -10,12 +10,12 @@ CRUD methods
 */
 const createOne = req => {
     return new Promise((resolve, reject) => {
-        Models.product.create(req.body)
+        Models.category.create(req.body)
             .then(data => {
                 resolve(data)
                 Models.organization.findById(data.organization)
                 .then(organization => {
-                    organization.products.push(data);
+                    organization.categories.push(data);
 
                     organization.save()
                     .then( updatedorganization => resolve(updatedorganization) )
@@ -29,9 +29,9 @@ const createOne = req => {
 const readAll = () => {
     return new Promise((resolve, reject) => {
         // Mongoose population to get associated data
-        Models.product.find()
+        Models.category.find()
             .populate('author', ['-password'])
-            .populate('organization')
+            .populate('organization', ['-categories'])
             .exec((err, data) => {
                 if (err) { return reject(err) }
                 else { return resolve(data) }
@@ -42,9 +42,9 @@ const readAll = () => {
 const readOne = id => {
     return new Promise((resolve, reject) => {
         // Mongoose population to get associated data
-        Models.product.findById(id)
+        Models.category.findById(id)
             .populate('author', ['-password'])
-            .populate('organization')
+            .populate('organization', ['-categories'])
             .exec((err, data) => {
                 if (err) { return reject(err) }
                 else { return resolve(data) }
@@ -54,23 +54,23 @@ const readOne = id => {
 
 const updateOne = req => {
     return new Promise((resolve, reject) => {
-        // Get product by ID
-        Models.product.findById(req.params.id)
-            .then(product => {
+        // Get category by ID
+        Models.category.findById(req.params.id)
+            .then(category => {
                 // check user
-                if (String(product.author) !== String(req.user._id)) {
+                if (String(category.author) !== String(req.user._id)) {
                     reject('User not authorized')
                 }
 
                 // Update object
-                product.name = req.body.name;
-                product.desc = req.body.desc;
-                product.organization = req.body.organization;
-                product.dateModified = new Date();
+                category.name = req.body.name;
+                category.desc = req.body.desc;
+                category.organization = req.body.organization;
+                category.dateModified = new Date();
 
-                // Save product changes
-                product.save()
-                    .then(updatedproduct => resolve(updatedproduct))
+                // Save category changes
+                category.save()
+                    .then(updatedcategory => resolve(updatedcategory))
                     .catch(updateError => reject(updateError))
             })
             .catch(err => reject(err))
@@ -79,14 +79,14 @@ const updateOne = req => {
 
 const deleteOne = req => {
     return new Promise((resolve, reject) => {
-        Models.product.findById(req.params.id)
-            .then(product => {
+        Models.category.findById(req.params.id)
+            .then(category => {
                 // check user
-                if (String(product.author) !== String(req.user._id)) {
+                if (String(category.author) !== String(req.user._id)) {
                     reject('User not authorized')
                 }
                 // Delete object
-                Models.product.findByIdAndDelete(req.params.id, (err, deleted) => {
+                Models.category.findByIdAndDelete(req.params.id, (err, deleted) => {
                     if (err) { return reject(err) }
                     else { return resolve(deleted) };
                 })

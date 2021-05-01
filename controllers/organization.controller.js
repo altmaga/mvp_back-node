@@ -21,6 +21,7 @@ CRUD methods
             Models.organization.find()
             .populate('author', [ '-password' ])
             .populate("products", ["-organization"])
+            .populate("categories", ["-organization"])
             .exec( (err, data) => {
                 if( err ){ return reject(err) }
                 else{ return resolve(data) }
@@ -34,6 +35,7 @@ CRUD methods
             Models.organization.findById( id )
             .populate('author', [ '-password' ])
             .populate("products", ["-organization"])
+            .populate("categories", ["-organization"])
             .exec( (err, data) => {
                 if( err ){ return reject(err) }
                 else{ return resolve(data) }
@@ -44,16 +46,16 @@ CRUD methods
     const updateOne = req => {
         return new Promise( (resolve, reject) => {
             // Get organization by ID
-            // console.log(req.params.id);
             Models.organization.findById( req.params.id )
             .then( organization => {
                 // Update object
                 organization.legalName = req.body.legalName;
-                organization.category = req.body.category;
                 organization.dateModified = new Date();
 
-                // TODO: Check author
-                // if( organization.author !== req.user._id ){ return reject('User not authorized') }
+                // Check author
+                if (String(organization.author) !== String(req.user._id)) {
+                    reject('User not authorized')
+                }
 
                 // Save organization changes
                 organization.save()
@@ -65,27 +67,21 @@ CRUD methods
     }
 
     const deleteOne = req => {
-        return new Promise( (resolve, reject) => {
-             // Delete object
-             Models.organization.findByIdAndDelete( req.params.id, (err, deleted) => {
-                if( err ){ return reject(err) }
-                else{ return resolve(deleted) };
-            })
+        return new Promise((resolve, reject) => {
+            Models.organization.findById(req.params.id)
+                .then(organization => {
+                    // check user
+                    if (String(organization.author) !== String(req.user._id)) {
+                        reject('User not authorized')
+                    }
+                    // Delete object
+                    Models.organization.findByIdAndDelete(req.params.id, (err, deleted) => {
+                        if (err) { return reject(err) }
+                        else { return resolve(deleted) };
+                    })
 
-            // // Get organization by ID
-            // Models.organization.findById( req.params.id )
-            // .then( organization => {
-            //     // TODO: Check author
-            //     if( organization.author !== req.user._id ){ return reject('User not authorized') }
-            //     else{
-            //         // Delete object
-            //         Models.organization.findByIdAndDelete( req.params.id, (err, deleted) => {
-            //             if( err ){ return reject(err) }
-            //             else{ return resolve(deleted) };
-            //         })
-            //     }
-            // })
-            .catch( err => reject(err) );
+                })
+                .catch(err => reject(err));
         });
     }
 //

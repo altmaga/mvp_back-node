@@ -4,8 +4,9 @@ Definition
     const Mandatory = {
         register: [ 'givenName', 'familyName', 'password', 'email', 'isOrganization' ],
         login: [ 'password', 'email' ],
-        organization: [ 'legalName', 'category' ],
-        product: [ 'name', 'desc', 'organization']
+        organization: [ 'legalName'],
+        product: [ 'name', 'desc', 'organization'],
+        category: [ 'name', 'desc', 'organization']
     }
 //
 

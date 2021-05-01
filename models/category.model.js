@@ -11,9 +11,10 @@ Definition
 const MySchema = new Schema({
     // Schema.org
     '@context': { type: String, default: 'http://schema.org' },
-    '@type': { type: String, default: 'Organization' },
+    '@type': { type: String, default: 'Category' },
 
-    legalName: String,
+    name: String,
+    desc: String,
 
     // Associer le profil utilisateur
     author: {
@@ -21,26 +22,21 @@ const MySchema = new Schema({
         ref: 'user'
     },
 
-    // Associer les produits
-    products: [{
+    // Associer l'organisation
+    organization: {
         type: Schema.Types.ObjectId,
-        ref: 'product'
-    }],
-
-    categories: [{
-        type: Schema.Types.ObjectId,
-        ref: 'category'
-    }],
+        ref: 'organization'
+    },
 
     // Définir une valeur par défaut
     creationDate: { type: Date, default: new Date() },
     dateModified: { type: Date, default: new Date() },
-    banished: { type: Boolean, default: false }
+    isPublished: { type: Boolean, default: false }
 })
 //
 
 /*
 Export
 */
-module.exports = mongoose.model('organization', MySchema)
+module.exports = mongoose.model('category', MySchema)
 //
