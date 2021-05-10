@@ -1,4 +1,4 @@
-# [03/2021] BACKEND : NodeJS/ExpressJS API/backoffice
+# Projet de spé - BACKEND : NodeJS/ExpressJS API/backoffice
 
 Ce répertoire à été réalisé dans le cadre d'une formation aux techniques spécifiques à la mise en place d'une API RestFull en NodeJS. Ce projet est connecté à une base de données MongoDB.
 
