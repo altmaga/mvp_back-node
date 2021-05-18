@@ -50,6 +50,14 @@ CRUD methods
             .then( organization => {
                 // Update object
                 organization.legalName = req.body.legalName;
+                organization.bg = req.body.bg;
+                organization.address = req.body.address;
+                organization.hours = req.body.hours;
+                organization.delivery = req.body.delivery;
+                organization.description = req.body.description;
+                organization.phone = req.body.phone;
+                organization.fb = req.body.fb;
+                organization.insta = req.body.insta;
                 organization.dateModified = new Date();
 
                 // Check author

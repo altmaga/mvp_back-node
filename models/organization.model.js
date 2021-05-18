@@ -14,6 +14,14 @@ const MySchema = new Schema({
     '@type': { type: String, default: 'Organization' },
 
     legalName: String,
+    bg: String,
+    address: String,
+    hours: String,
+    delivery: String,
+    description: String,
+    phone: String,
+    fb: { type: String, default: null },
+    insta: { type: String, default: null},
 
     // Associer le profil utilisateur
     author: {

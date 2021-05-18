@@ -15,6 +15,7 @@ Definition
 
         name: String,
         desc: String,
+        img: String,
 
         // Associer le profil utilisateur
         author: {

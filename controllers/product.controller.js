@@ -65,6 +65,7 @@ const updateOne = req => {
                 // Update object
                 product.name = req.body.name;
                 product.desc = req.body.desc;
+                product.img = req.body.img;
                 product.organization = req.body.organization;
                 product.dateModified = new Date();
 
