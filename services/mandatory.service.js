@@ -6,7 +6,7 @@ Definition
         login: [ 'password', 'email' ],
         organization: [ 'legalName', 'bg', 'address', 'hours', 'delivery', 'description', 'phone', 'fb', 'insta'],
         product: [ 'name', 'desc', 'img', 'organization'],
-        category: [ 'name', 'desc', 'organization']
+        category: [ 'name', 'desc', 'organizations']
     }
 //
 

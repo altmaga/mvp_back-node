@@ -31,7 +31,7 @@ const readAll = () => {
         // Mongoose population to get associated data
         Models.category.find()
             .populate('author', ['-password'])
-            .populate('organization', ['-categories'])
+            .populate('organizations', ['-categories'])
             .exec((err, data) => {
                 if (err) { return reject(err) }
                 else { return resolve(data) }
@@ -44,7 +44,7 @@ const readOne = id => {
         // Mongoose population to get associated data
         Models.category.findById(id)
             .populate('author', ['-password'])
-            .populate('organization', ['-categories'])
+            .populate('organizations', ['-categories'])
             .exec((err, data) => {
                 if (err) { return reject(err) }
                 else { return resolve(data) }
@@ -65,7 +65,7 @@ const updateOne = req => {
                 // Update object
                 category.name = req.body.name;
                 category.desc = req.body.desc;
-                category.organization = req.body.organization;
+                category.organizations = req.body.organizations;
                 category.dateModified = new Date();
 
                 // Save category changes

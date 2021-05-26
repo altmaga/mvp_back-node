@@ -92,6 +92,10 @@ CRUD methods
                 .catch(err => reject(err));
         });
     }
+
+    const readAllbyCategoryId = id => {
+
+    }
 //
 
 /*

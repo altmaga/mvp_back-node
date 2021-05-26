@@ -23,10 +23,10 @@ const MySchema = new Schema({
     },
 
     // Associer l'organisation
-    organization: {
+    organizations: [{
         type: Schema.Types.ObjectId,
         ref: 'organization'
-    },
+    }],
 
     // Définir une valeur par défaut
     creationDate: { type: Date, default: new Date() },
