@@ -6,6 +6,7 @@ Definition
         product: require('./product.controller'),
         organization: require('./organization.controller'),
         category: require('./category.controller'),
+        like: require('./like.controller')
     }
 //
 

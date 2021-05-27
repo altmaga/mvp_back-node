@@ -22,6 +22,7 @@ CRUD methods
             .populate('author', [ '-password' ])
             .populate("products", ["-organization"])
             .populate("categories", ["-organization"])
+            .populate("likes", ["-organization"])
             .exec( (err, data) => {
                 if( err ){ return reject(err) }
                 else{ return resolve(data) }
@@ -36,6 +37,7 @@ CRUD methods
             .populate('author', [ '-password' ])
             .populate("products", ["-organization"])
             .populate("categories", ["-organization"])
+            .populate("likes", ["-organization"])
             .exec( (err, data) => {
                 if( err ){ return reject(err) }
                 else{ return resolve(data) }
@@ -91,10 +93,6 @@ CRUD methods
                 })
                 .catch(err => reject(err));
         });
-    }
-
-    const readAllbyCategoryId = id => {
-
     }
 //
 

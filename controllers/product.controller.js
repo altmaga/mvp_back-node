@@ -81,19 +81,19 @@ const updateOne = req => {
 const deleteOne = req => {
     return new Promise((resolve, reject) => {
         Models.product.findById(req.params.id)
-            .then(product => {
-                // check user
-                if (String(product.author) !== String(req.user._id)) {
-                    reject('User not authorized')
-                }
-                // Delete object
-                Models.product.findByIdAndDelete(req.params.id, (err, deleted) => {
-                    if (err) { return reject(err) }
-                    else { return resolve(deleted) };
-                })
-
+        .then(product => {
+            // check user
+            if (String(product.author) !== String(req.user._id)) {
+                reject('User not authorized')
+            }
+            // Delete object
+            Models.product.findByIdAndDelete(req.params.id, (err, deleted) => {
+                if (err) { return reject(err) }
+                else { return resolve(deleted) };
             })
-            .catch(err => reject(err));
+
+        })
+        .catch(err => reject(err));
     });
 }
 //

@@ -13,7 +13,7 @@ const createOne = req => {
         Models.category.create(req.body)
             .then(data => {
                 resolve(data)
-                Models.organization.findById(data.organization)
+                Models.organization.findById(data.organizations)
                 .then(organization => {
                     organization.categories.push(data);
 
