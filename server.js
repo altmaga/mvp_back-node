@@ -74,11 +74,6 @@ class ServerClass{
         const apiRouter = new ApiRouterClass( { passport } );
         this.server.use('/api', apiRouter.init());
 
-        // Set backend router
-        // const BackendRouterClass = require('./routers/backend.router')
-        // const backendRouter = new BackendRouterClass( { passport } );
-        // this.server.use('/', backendRouter.init());
-
         // Launch server
         this.launch();
     }
