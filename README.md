@@ -38,5 +38,4 @@ COOKIE_NAME=
 # JWT
 JWT_SECRET=
 ```
-
 # Alice Mouchard - Projet de spécialisation M2DEV
